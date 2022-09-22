@@ -48,17 +48,26 @@ body {
   background-color: rgb(192, 227, 238);
 }
 .frame {
-  display: grid;
+  --ratio: calc(311 / 640);
+  height: calc(var(--ratio) * 1200px * 0.23);
+  display: inline-grid;
   align-items: center;
   width: 23%;
   margin-top: 2%;
+}
+.image {
+  margin-left: 92%;
+  position: relative;
+  bottom: calc(var(--ratio) * 1200px * 0.22);
 }
 .title {
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(192, 227, 238);
+  background-color: rgba(192, 227, 238, 0.5);
+  position: relative;
+  top: -46px;
 }
 img {
   max-width: 100%;
@@ -68,7 +77,11 @@ img {
     width: 90vw;
   }
   .frame {
+    height: calc(var(--ratio) * 45vw);
     width: 48%;
+  }
+  .image {
+    bottom: calc(var(--ratio) * 40vw);
   }
 }
 @media (max-width: 600px) {
@@ -90,6 +103,10 @@ img {
     margin-top: 2%;
   }
   .frame {
+    height: calc(var(--ratio) * 90vw);
     width: 90vw;
+  }
+  .image {
+    bottom: calc(var(--ratio) * 80vw);
   }
 }
