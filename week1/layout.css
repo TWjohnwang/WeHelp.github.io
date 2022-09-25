@@ -16,13 +16,46 @@ body {
   width: 50%;
   justify-content: end;
 }
-.right1 {
-  display: none;
-}
-.item {
+.right__item {
   flex: none;
   width: 100px;
   text-align: end;
+}
+.right-mobile {
+  display: none;
+  position: relative;
+  bottom: 4px;
+  font-size: 35px;
+  cursor: pointer;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1; /* 控制上下層順序 */
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden; /* 控制x軸內部內容是否剪裁 */
+  transition: 0.5s; /* 動畫時間 */
+  padding-top: 60px;
+}
+.sidenav a {
+  padding: 8px 8px 8px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 30px;
 }
 .home {
   font-size: 2em;
@@ -91,7 +124,7 @@ img {
   .right {
     display: none;
   }
-  .right1 {
+  .right-mobile {
     display: block;
     margin-right: 2vw;
   }

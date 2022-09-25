@@ -10,14 +10,29 @@
     <div class="heading">
       <div class="left">My Website</div>
       <div class="right">
-        <div class="item">Item1</div>
-        <div class="item">Item2</div>
-        <div class="item">Item3</div>
-        <div class="item">Item4</div>
+        <div class="right__item">Item1</div>
+        <div class="right__item">Item2</div>
+        <div class="right__item">Item3</div>
+        <div class="right__item">Item4</div>
       </div>
-      <div class="right1">
-        <img src="img/more.png" alt="hamburger menu" />
+      <div class="right-mobile" onclick="openNav()">&#9776;</div>
+      <div class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times</a
+        >
+        <a href="#">Item1</a>
+        <a href="#">Item2</a>
+        <a href="#">Item3</a>
+        <a href="#">Item4</a>
       </div>
+      <script>
+        function openNav() {
+          document.querySelector(".sidenav").style.width = "30%";
+        }
+        function closeNav() {
+          document.querySelector(".sidenav").style.width = "0";
+        }
+      </script>
     </div>
     <div class="home">Welcome to MyHome</div>
     <div class="container">
