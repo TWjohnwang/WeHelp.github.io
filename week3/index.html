@@ -7,6 +7,40 @@
     <link rel="stylesheet" type="text/css" href="layout.css" />
   </head>
   <body>
+    <script>
+      let attractionName = [];
+      let attractionPhoto = [];
+      (function () {
+        fetch(
+          "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            // for
+            for (let name of data.result.results) {
+              attractionName.push(name.stitle);
+              attractionPhoto.push(
+                // The substr(起始index, 結束index) method extracts a part of a string.
+                // The "i" modifier specifies a case-insenitive match.
+                name.file.substr(0, name.file.search(/jpg/i) + 3)
+              );
+            }
+          })
+          .then(() => {
+            for (let i = 0; i < attractionName.length; i++) {
+              if (i < 2) {
+                let attraction = document.createElement("div");
+                attraction.textContent = attractionName[i];
+                document
+                  .getElementsByClassName("promotion")
+                  [i].appendChild(attraction);
+              }
+            }
+          });
+      })();
+    </script>
     <div class="heading">
       <div class="left">My Website</div>
       <div class="right">
@@ -22,49 +56,41 @@
     <div class="home">Welcome to MyHome</div>
     <div class="container">
       <div class="promotion">
-        <img
-          src="img/photo.jpg"
-          width="80px"
-          height="100%"
-        />&nbsp;&nbsp;Promotion 1
+        <img src="" width="80px" height="100%" />&nbsp;&nbsp;
       </div>
       <div class="promotion">
-        <img
-          src="img/photo.jpg"
-          width="80px"
-          height="100%"
-        />&nbsp;&nbsp;Promotion 2
+        <img src="" width="80px" height="100%" />&nbsp;&nbsp;
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 1</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 2</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 3</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 4</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 5</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 6</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 7</div>
       </div>
       <div class="frame">
-        <img src="img/photo.jpg" />
+        <img src="" />
         <div class="title">Title 8</div>
       </div>
     </div>
