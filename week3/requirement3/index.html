@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Assignment - Week 1</title>
+    <link rel="stylesheet" type="text/css" href="layout.css" />
+  </head>
+  <body>
+    <script>
+      let attractionName = [];
+      let attractionPhoto = [];
+      (function () {
+        fetch(
+          "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            // for
+            for (let name of data.result.results) {
+              attractionName.push(name.stitle);
+              attractionPhoto.push(
+                // The substr(起始index, 結束index) method extracts a part of a string.
+                // The "i" modifier specifies a case-insenitive match.
+                name.file.substr(0, name.file.search(/jpg/i) + 3)
+              );
+            }
+          })
+          .then(() => {
+            for (let i = 0; i < attractionName.length; i++) {
+              if (i < 2) {
+                let photo = document.createElement("img");
+                photo.setAttribute("src", attractionPhoto[i]);
+                photo.setAttribute("width", "80px");
+                photo.setAttribute("height", "100%");
+                document
+                  .getElementsByClassName("promotion")
+                  [i].appendChild(photo);
+                let attraction = document.createElement("div");
+                attraction.className = "text";
+                attraction.textContent = attractionName[i];
+                document
+                  .getElementsByClassName("promotion")
+                  [i].appendChild(attraction);
+              } else if (i < 10) {
+                let photo = document.createElement("img");
+                photo.setAttribute("src", attractionPhoto[i]);
+                photo.setAttribute("width", "100%");
+                photo.setAttribute("height", "206px");
+                document
+                  .getElementsByClassName("frame")
+                  [i - 2].appendChild(photo);
+                let attraction = document.createElement("div");
+                attraction.className = "title";
+                attraction.textContent = attractionName[i];
+                document
+                  .getElementsByClassName("frame")
+                  [i - 2].appendChild(attraction);
+              } else {
+              }
+            }
+          });
+      })();
+    </script>
+    <div class="heading">
+      <div class="left">My Website</div>
+      <div class="right">
+        <div class="item">Item1</div>
+        <div class="item">Item2</div>
+        <div class="item">Item3</div>
+        <div class="item">Item4</div>
+      </div>
+      <div class="right1">
+        <img src="/week1/img/more.png" alt="hamburger menu" />
+      </div>
+    </div>
+    <div class="home">Welcome to MyHome</div>
+    <div class="container">
+      <div class="promotion"></div>
+      <div class="promotion"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+    </div>
+  </body>
+</html>

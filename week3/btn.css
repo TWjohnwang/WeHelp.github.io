@@ -1,0 +1,11 @@
+.btn {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 45px;
+  border: solid 2px lightgrey;
+  background-color: gainsboro;
+  cursor: pointer;
+}

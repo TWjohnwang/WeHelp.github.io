@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Assignment - Week 1</title>
+    <link rel="stylesheet" type="text/css" href="layout.css" />
+  </head>
+  <body>
+    <script>
+      // 景點名稱
+      let attractionName = [];
+      // 景點照片URL
+      let attractionPhoto = [];
+      (function () {
+        fetch(
+          "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"
+        )
+          .then(function (response) {
+            // 取得景點所有資料(Json 格式)
+            return response.json();
+          })
+          .then(function (data) {
+            for (let name of data.result.results) {
+              attractionName.push(name.stitle);
+              attractionPhoto.push(
+                // The substr(起始index, 結束index) method extracts a part of a string.
+                // The "i" modifier specifies a case-insenitive match.
+                name.file.substr(0, name.file.search(/jpg/i) + 3)
+              );
+            }
+          })
+          .then(() => {
+            // index 為 attractionName 的 index
+            for (let index = 0; index < attractionName.length; index++) {
+              // 將前2張景點名稱及圖片放入上方兩個小框框中
+              if (index < 2) {
+                // 新增 img element
+                let photo = document.createElement("img");
+                // 將第 index 景點照片放入 photo
+                photo.setAttribute("src", attractionPhoto[index]);
+                // 設定 photo 寬
+                photo.setAttribute("width", "80px");
+                // 設定 photo 高
+                photo.setAttribute("height", "100%");
+                // 將appendPhoto append 到第 index <div class = promotion> 內
+                appendPhoto =
+                  document.getElementsByClassName("promotion")[index];
+                appendPhoto.appendChild(photo);
+                // 新增 div element
+                let title = document.createElement("div");
+                // 設定 <div class = text>
+                title.className = "text";
+                // 將第 index 景點名稱放入 div 的 text 內
+                title.textContent = attractionName[index];
+                // 將 title append 到第 index <div class = promotion> 內
+                appendTitle =
+                  document.getElementsByClassName("promotion")[index];
+                appendTitle.appendChild(title);
+              }
+              // 將8張景點名稱及圖片放入下方八個框框中
+              else if (index < 10) {
+                let photo = document.createElement("img");
+                photo.setAttribute("src", attractionPhoto[index]);
+                photo.setAttribute("width", "100%");
+                photo.setAttribute("height", "206px");
+                appendPhoto =
+                  document.getElementsByClassName("frame")[index - 2];
+                appendPhoto.appendChild(photo);
+                let title = document.createElement("div");
+                title.className = "title";
+                title.textContent = attractionName[index];
+                appendTitle =
+                  document.getElementsByClassName("frame")[index - 2];
+                appendTitle.appendChild(title);
+              }
+            }
+          });
+      })();
+      // 將剩餘景點名稱及圖片加入剩餘框框中
+      function loadMore() {
+        let remainingAttrations = attractionName.length - 10;
+        let remainder = remainingAttrations % 8;
+        let loopTimes = (remainingAttrations - remainder) / 8;
+        if (remainder != 0) {
+          loopTimes = loopTimes += 1;
+        }
+        for (let index = 0; index < 8; index++) {
+          let node = document.getElementsByClassName("frame");
+          let clone = node[index].cloneNode(true);
+          document.getElementsByClassName("container")[0].appendChild(clone);
+          let photo = document.querySelectorAll(".frame img");
+          photo.src =
+            "https://www.travel.taipei/d_upload_ttn/sceneadmin/image/A0/B0/C0/D226/E920/F665/1f26af86-e907-44c9-b4d7-5c498dacfc6c.jpg";
+          console.log(attractionPhoto[index + 10]);
+        }
+      }
+    </script>
+    <div class="heading">
+      <div class="left">My Website</div>
+      <div class="right">
+        <div class="item">Item1</div>
+        <div class="item">Item2</div>
+        <div class="item">Item3</div>
+        <div class="item">Item4</div>
+      </div>
+      <div class="right1">
+        <img src="/week1/img/more.png" alt="hamburger menu" />
+      </div>
+    </div>
+    <div class="home">Welcome to MyHome</div>
+    <div class="container">
+      <div class="promotion"></div>
+      <div class="promotion"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+      <div class="frame"></div>
+    </div>
+    <button id="btn" onclick="loadMore()">Load More</button>
+  </body>
+</html>
