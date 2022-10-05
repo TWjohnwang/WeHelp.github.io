@@ -48,6 +48,7 @@ body {
   background-color: rgb(192, 227, 238);
 }
 .frame {
+  height: 311px * 200%;
   display: grid;
   align-items: center;
   width: 23%;
@@ -68,11 +69,7 @@ img {
     width: 90vw;
   }
   .frame {
-    height: calc(var(--ratio) * 45vw);
     width: 48%;
-  }
-  .image {
-    bottom: calc(var(--ratio) * 40vw);
   }
 }
 @media (max-width: 600px) {
@@ -94,10 +91,6 @@ img {
     margin-top: 2%;
   }
   .frame {
-    height: calc(var(--ratio) * 90vw);
     width: 90vw;
-  }
-  .image {
-    bottom: calc(var(--ratio) * 80vw);
   }
 }

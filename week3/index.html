@@ -32,10 +32,18 @@
             for (let i = 0; i < attractionName.length; i++) {
               if (i < 2) {
                 let attraction = document.createElement("div");
+                attraction.className = "promotion";
                 attraction.textContent = attractionName[i];
                 document
-                  .getElementsByClassName("promotion")
-                  [i].appendChild(attraction);
+                  .getElementsByClassName("container")[0]
+                  .appendChild(attraction);
+              } else if (i < 8) {
+                let attraction = document.createElement("div");
+                attraction.className = "title";
+                attraction.textContent = attractionName[i];
+                document
+                  .getElementsByClassName("container")[0]
+                  .appendChild(attraction);
               }
             }
           });
@@ -50,12 +58,12 @@
         <div class="item">Item4</div>
       </div>
       <div class="right1">
-        <img src="img/more.png" alt="hamburger menu" />
+        <img src="../week1/img/more.png" alt="hamburger menu" />
       </div>
     </div>
     <div class="home">Welcome to MyHome</div>
     <div class="container">
-      <div class="promotion">
+      <!-- <div class="promotion">
         <img src="" width="80px" height="100%" />&nbsp;&nbsp;
       </div>
       <div class="promotion">
@@ -92,7 +100,7 @@
       <div class="frame">
         <img src="" />
         <div class="title">Title 8</div>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>
