@@ -1,0 +1,50 @@
+body {
+  margin: 0px;
+}
+.title {
+  background-color: rgb(34, 51, 68);
+  color: white;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+}
+.login,
+.calculate {
+  margin: 2% auto;
+  width: 40vw;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.login_title,
+.calculate_title {
+  margin: 10px 0 10px 0;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bolder;
+}
+.login_input,
+.calculate_input {
+  margin: 10px 0 20px 0;
+  display: flex;
+  justify-content: center;
+}
+.login_input label,
+.calculate_input label {
+  margin-right: 10px;
+  font-size: 30px;
+}
+.login_input input,
+.calculate_input input {
+  font-size: 30px;
+  height: 34px;
+  width: 400px;
+}
+.btn {
+  font-size: 20px;
+  padding: 5px 15px 5px 15px;
+  margin: auto;
+  display: flex;
+}

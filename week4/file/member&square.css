@@ -1,0 +1,20 @@
+body {
+  margin: 0px;
+}
+.title {
+  background-color: rgb(34, 51, 68);
+  color: white;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+}
+.member,
+.num {
+  font-size: 35px;
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
