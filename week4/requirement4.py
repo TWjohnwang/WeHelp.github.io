@@ -48,9 +48,9 @@ def calculate(num):
 def verification():
     account = request.form["account"]
     password = request.form["password"]
-    session["account"] = account
-    session["password"] = password
     if account == "test" and password == "test":
+        session["account"] = account
+        session["password"] = password
         return redirect("/member")
     elif account == "" or password == "":
         text = "請輸入帳號、密碼"
