@@ -78,7 +78,7 @@ body {
   background-color: rgba(192, 227, 238);
 }
 #btn {
-  margin: auto;
+  margin: 10px auto;
   display: flex;
   justify-content: center;
   align-items: center;
