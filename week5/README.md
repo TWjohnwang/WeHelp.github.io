@@ -2,8 +2,8 @@
 
 > 利⽤要求⼆建立的資料庫和資料表，寫出能夠滿⾜以下要求的 SQL 指令：
 
-- 使⽤ INSERT 指令新增⼀筆資料到 member 資料表中，這筆資料的 username 和password 欄位必須是 test。  
-接著繼續新增⾄少 4 筆隨意的資料。  
+- 	<font color=#FF0000>使⽤ INSERT 指令新增⼀筆資料到 member 資料表中，這筆資料的 username 和password 欄位必須是 test。  
+接著繼續新增⾄少 4 筆隨意的資料。</font>  
 
   ![insert](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/insert.png)
 - 使⽤ SELECT 指令取得所有在 member 資料表中的會員資料。  
