@@ -27,11 +27,11 @@
 
 > 利⽤要求⼆建立的資料庫和資料表，寫出能夠滿⾜以下要求的 SQL 指令：
 
-- 取得 member 資料表中，總共有幾筆資料 ( 幾位會員 )。
+- 取得 member 資料表中，總共有幾筆資料 ( 幾位會員 )。  
   ![count](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/count.png)
-- 取得 member 資料表中，所有會員 follower_count 欄位的總和。
+- 取得 member 資料表中，所有會員 follower_count 欄位的總和。  
   ![sum](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/sum.png)
-- 取得 member 資料表中，所有會員 follower_count 欄位的平均數。
+- 取得 member 資料表中，所有會員 follower_count 欄位的平均數。  
   ![avg](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/avg.png)
 
 ---
