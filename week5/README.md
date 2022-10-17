@@ -3,14 +3,14 @@
 > 利⽤要求⼆建立的資料庫和資料表，寫出能夠滿⾜以下要求的 SQL 指令：
 
 - 使⽤ INSERT 指令新增⼀筆資料到 member 資料表中，這筆資料的 username 和password 欄位必須是 test。  
-- 接著繼續新增⾄少 4 筆隨意的資料。
+接著繼續新增⾄少 4 筆隨意的資料。
   ![insert](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/insert.png)
 - 使⽤ SELECT 指令取得所有在 member 資料表中的會員資料。
   ![select](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/select.png)
 - 使⽤ SELECT 指令取得所有在 member 資料表中的會員資料，並按照 time 欄位，由近到遠排序。
   ![order_by](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/order_by.png)
 - 使⽤ SELECT 指令取得 member 資料表中第 2 ~ 4 共三筆資料，並按照 time 欄位，由近到遠排序。  
-- ( 並非編號 2、3、4 的資料，⽽是排序後的第 2 ~ 4 筆資料 )
+( 並非編號 2、3、4 的資料，⽽是排序後的第 2 ~ 4 筆資料 )
   ![limit](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/limit.png)
 - 使⽤ SELECT 指令取得欄位 username 是 test 的會員資料。
   ![where](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/where.png)
