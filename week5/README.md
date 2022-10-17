@@ -10,7 +10,7 @@
 - 使⽤ SELECT 指令取得所有在 member 資料表中的會員資料，並按照 time 欄位，由
   近到遠排序。
   ![order_by](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/order_by.png)
-- 使⽤ SELECT 指令取得 member 資料表中第 2 ~ 4 共三筆資料，並按照 time 欄位，
+- 使⽤ SELECT 指令取得 member 資料表中第 2 ~ 4 共三筆資料，並按照 time 欄位，  
   由近到遠排序。( 並非編號 2、3、4 的資料，⽽是排序後的第 2 ~ 4 筆資料 )
   ![limit](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/limit.png)
 - 使⽤ SELECT 指令取得欄位 username 是 test 的會員資料。
