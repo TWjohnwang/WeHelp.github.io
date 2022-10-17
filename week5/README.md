@@ -22,7 +22,7 @@
 - ## 使⽤ SELECT 指令取得欄位 username 是 test、且欄位 password 也是 test 的資料。  
 
   ![and](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/and.png)
-- ## 使⽤ UPDATE 指令更新欄位 username 是 test 的會員資料，將資料中的 name 欄位改成 test2。  
+- ## 使⽤ UPDATE 指令更新欄位 username 是 test 的會員資料，將資料中的 name 欄位改成 test2。   
 
   ![update](https://raw.githubusercontent.com/TWjohnwang/WeHelp.github.io/main/week5/img/update.png)
 
