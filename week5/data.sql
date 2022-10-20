@@ -71,6 +71,33 @@ LOCK TABLES `message` WRITE;
 INSERT INTO `message` VALUES (1,3,'哈囉',1300,'2022-10-15 09:00:00'),(2,3,'哈囉',1300,'2022-10-21 19:00:00'),(3,2,'你好',13000,'2022-10-18 01:06:16'),(4,1,'天氣真好',130000,'2022-10-18 01:06:27'),(5,4,'心情真好',20000,'2022-10-18 01:06:49'),(6,5,'明天星期五',200000,'2022-10-18 01:07:26'),(7,6,'後天放假',60000,'2022-10-18 01:07:39'),(8,1,'年終很高',320000,'2022-10-18 01:08:13');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `message_like_count`
+--
+
+DROP TABLE IF EXISTS `message_like_count`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `message_like_count` (
+  `member_id` bigint NOT NULL,
+  `message_id` bigint NOT NULL,
+  PRIMARY KEY (`member_id`,`message_id`),
+  KEY `message_id` (`message_id`),
+  CONSTRAINT `message_like_count_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `message_like_count_ibfk_2` FOREIGN KEY (`message_id`) REFERENCES `message` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message_like_count`
+--
+
+LOCK TABLES `message_like_count` WRITE;
+/*!40000 ALTER TABLE `message_like_count` DISABLE KEYS */;
+INSERT INTO `message_like_count` VALUES (2,5),(3,5),(1,6),(2,6),(3,6),(4,6),(5,6),(6,6),(3,7);
+/*!40000 ALTER TABLE `message_like_count` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -81,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-18  1:37:43
+-- Dump completed on 2022-10-20 15:55:58
