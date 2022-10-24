@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0px;
+      }
+      .title {
+        background-color: rgb(34, 51, 68);
+        color: white;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+      }
+      .username {
+        font-size: 35px;
+        margin-top: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .content {
+        margin: 2% auto;
+        width: 40vw;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+      }
+      .content_title,
+      .message {
+        margin: 10px 0 10px 0;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+      }
+      .content_input {
+        margin: 10px 0 20px 0;
+        display: flex;
+        justify-content: center;
+      }
+      .content_input label {
+        margin-right: 10px;
+        font-size: 30px;
+      }
+      .content_input input {
+        font-size: 30px;
+        height: 34px;
+        width: 400px;
+      }
+      .btn {
+        font-size: 20px;
+        padding: 5px 15px 5px 15px;
+        margin: auto;
+        display: flex;
+      }
+    </style>
+    <title>會員頁面</title>
+  </head>
+  <body>
+    <header class="title">
+      <h1>歡迎光臨，這是會員頁</h1>
+    </header>
+    <div class="username">{{text}}，歡迎登入系統</div>
+    <a class="username" href="/signout">登出系統</a>
+    <hr />
+    <div class="content">
+      <div class="content_title">快來留言吧</div>
+      <form action="/message" method="post">
+        <div class="content_input">
+          <label for="content_message">內容</label>
+          <input id="content_message" type="text" name="content" />
+        </div>
+        <button type="submit" class="btn">送出</button>
+      </form>
+    </div>
+    <hr />
+    {%for index in range(0, len)%}
+    <div class="message">
+      <label>{{message[index][0]}}</label>
+      <label>:</label>
+      <label style="font-weight: normal"> {{message[index][1]}}</label>
+    </div>
+    {%endfor%}
+  </body>
+</html>
