@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template, session
 import mysql.connector
 
-connection = mysql.connector.connect(user='root', password='zxc6325551',
+connection = mysql.connector.connect(user='root', password='',
                                     host='localhost',
                                     port='3306',
                                     database="website")
