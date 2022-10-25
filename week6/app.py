@@ -14,9 +14,7 @@ app.secret_key = "P@ssw0rd"
 @app.route("/")
 def index():
     if 'username' in session:
-        cursor.execute("SELECT name, content FROM member JOIN message ON  member.id = member_id ORDER BY message.time;")
-        sql_data = cursor.fetchall()
-        return render_template("logout.html", text=session["name"], len=len(sql_data), message=[[i[0], i[1]] for i in sql_data])
+        return redirect('/member')
     return render_template("index.html")
 
 @app.route("/member")
@@ -42,11 +40,15 @@ def signup():
     name = request.form["name"]
     username = request.form["username"]
     password = request.form["password"]
-    cursor.execute(f'SELECT username FROM member WHERE username = "{username}";')
+    select_username = ("SELECT username FROM member WHERE username = %(username)s;")
+    cursor.execute(select_username, {'username': username})
     sql_data = cursor.fetchone()
     if not sql_data:
         # 新增會員資料到資料庫
-        cursor.execute(f'INSERT INTO member(name, username, password) VALUES("{name}", "{username}", "{password}");')
+        insert_user = ("INSERT INTO member(name, username, password) "
+                       "VALUES(%s, %s, %s)")
+        user_data = (name, username, password)
+        cursor.execute(insert_user, user_data)
         connection.commit()
         return redirect("/")
     else:
@@ -58,13 +60,15 @@ def verification():
     username = request.form["username"]
     password = request.form["password"]
     # 從資料庫查詢對應的帳號及密碼
-    cursor.execute(f'SELECT username, password, name FROM member WHERE username = "{username}";')
+    select_username = ("SELECT username, password, name, id FROM member WHERE username = %(username)s;")
+    cursor.execute(select_username, {'username': username})
     sql_data = cursor.fetchone()
     if sql_data:
         if username == sql_data[0] and password == sql_data[1]:
             session["username"] = username
             session["password"] = password
             session["name"] = sql_data[2]
+            session["id"] = sql_data[3]
             return redirect("/member")
     else:
         if not username or not password:
@@ -77,9 +81,12 @@ def verification():
 @app.route("/message", methods=["POST"])
 def message():
     if 'username' in session:
-        name = session["username"]
+        id = session["id"]
         content = request.form["content"]
-        cursor.execute(f'INSERT INTO message(member_id, content) VALUES((SELECT member.id FROM member WHERE member.username = "{name}"), "{content}");')
+        insert_message = ("INSERT INTO message(member_id, content)"
+                          "VALUES(%s, %s)")
+        message_data = (id, content)
+        cursor.execute(insert_message, message_data)
         connection.commit()
         return redirect("/member")
     return redirect("/")
