@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template, session
 import mysql.connector
 
-connection = mysql.connector.connect(user='root', password='',
+connection = mysql.connector.connect(user='root', password='zxc6325551',
                                     host='localhost',
                                     port='3306',
                                     database="website")
@@ -20,7 +20,7 @@ def index():
 @app.route("/member")
 def signin():
     if 'username' in session:
-        cursor.execute("SELECT name, content FROM member JOIN message ON  member.id = member_id ORDER BY message.time;")
+        cursor.execute("SELECT name, content FROM member JOIN message ON member.id = member_id ORDER BY message.time;")
         sql_data = cursor.fetchall()
         return render_template("logout.html", text=session["name"], len=len(sql_data), message=[[i[0], i[1]] for i in sql_data])
     return redirect("/")
@@ -60,8 +60,8 @@ def verification():
     username = request.form["username"]
     password = request.form["password"]
     # 從資料庫查詢對應的帳號及密碼
-    select_username = ("SELECT username, password, name, id FROM member WHERE username = %(username)s;")
-    cursor.execute(select_username, {'username': username})
+    select_username = ("SELECT username, password, name, id FROM member WHERE username = %(username)s AND password = %(password)s;")
+    cursor.execute(select_username, {'username': username, 'password':password})
     sql_data = cursor.fetchone()
     if sql_data:
         if username == sql_data[0] and password == sql_data[1]:
