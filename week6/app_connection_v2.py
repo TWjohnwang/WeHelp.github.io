@@ -1,5 +1,4 @@
 from flask import Flask, request, redirect, url_for, render_template, session
-import mysql.connector
 from mysql.connector.pooling import MySQLConnectionPool
 
 connection = MySQLConnectionPool(user='root',
