@@ -1,17 +1,16 @@
 from flask import Flask, request, redirect, url_for, render_template, session
 import mysql.connector
+from mysql.connector.pooling import MySQLConnectionPool
+
+connection = MySQLConnectionPool(user='root',
+                    password='zxc6325551',
+                    host='localhost',
+                    port='3306',
+                    database="website",
+                    pool_name = 'signin',
+                    pool_size=1)
 
 app = Flask(__name__)
-
-# 建立資料庫連線，並設定 connection pool 上限
-connection = mysql.connector.connect(user='root',
-                                    password='zxc6325551',
-                                    host='localhost',
-                                    port='3306',
-                                    database="website",
-                                    pool_name = "signin",
-                                    pool_size = 1)
-connection.close()
 
 app.secret_key = "P@ssw0rd"
 
@@ -24,7 +23,7 @@ def index():
 @app.route("/member")
 def signin():
     if 'username' in session:
-        member_connection = mysql.connector.connect(pool_name = 'signin')
+        member_connection = connection.get_connection()
         with member_connection.cursor() as cursor:
             cursor.execute("SELECT name, content FROM member JOIN message ON member.id = member_id ORDER BY message.time;")
             sql_data = cursor.fetchall()
@@ -47,7 +46,7 @@ def signup():
     name = request.form["name"]
     username = request.form["username"]
     password = request.form["password"]
-    signup_connection = mysql.connector.connect(pool_name = 'signin')
+    signup_connection = connection.get_connection()
     with signup_connection.cursor() as cursor:
         select_username = ("SELECT username FROM member WHERE username = %(username)s;")
         cursor.execute(select_username, {'username': username})
@@ -70,7 +69,7 @@ def signup():
 def verification():
     username = request.form["username"]
     password = request.form["password"]
-    signin_connection = mysql.connector.connect(pool_name='signin')
+    signin_connection = connection.get_connection()
     with signin_connection.cursor() as cursor:
         # 從資料庫查詢對應的帳號及密碼
         select_username = ("SELECT username, password, name, id FROM member WHERE username = %(username)s AND password = %(password)s;")
@@ -97,14 +96,14 @@ def message():
     if 'username' in session:
         id = session["id"]
         content = request.form["content"]
-        message_connection = mysql.connector.connect(pool_name = 'signin')
-        with message_connection.cursor() as cursor:
+        signin_connection = connection.get_connection()
+        with signin_connection.cursor() as cursor:
             insert_message = ("INSERT INTO message(member_id, content)"
                             "VALUES(%s, %s)")
             message_data = (id, content)
             cursor.execute(insert_message, message_data)
-            message_connection.commit()
-            message_connection.close()
+            signin_connection.commit()
+            signin_connection.close()
         return redirect("/member")
     return redirect("/")
     
