@@ -1,14 +1,6 @@
 from flask import Flask, request, redirect, url_for, render_template, session
 import mysql.connector
 
-# connection = mysql.connector.connect(user='root', password='zxc6325551',
-#                                     host='localhost',
-#                                     port='3306',
-#                                     database="website",
-#                                     pool_name = "signin",
-#                                     pool_size = 5)
-# cursor = connection.cursor()
-
 app = Flask(__name__)
 
 app.secret_key = "P@ssw0rd"
@@ -70,7 +62,7 @@ def signup():
 def verification():
     username = request.form["username"]
     password = request.form["password"]
-    connection = mysql.connector.connect(user='root', password='zxc6325551',
+    connection = mysql.connector.connect(user='root', password='',
                                     host='localhost',
                                     port='3306',
                                     database="website",
