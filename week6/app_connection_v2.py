@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, url_for, render_template, session
 from mysql.connector.pooling import MySQLConnectionPool
 
 connection = MySQLConnectionPool(user='root',
-                    password='',
+                    password='zxc6325551',
                     host='localhost',
                     port='3306',
                     database="website",
@@ -86,9 +86,8 @@ def verification():
         if not username or not password:
             text = "請輸入帳號、密碼"
             return redirect(url_for("error", message=text))
-        else:
-            text = "帳號、或密碼輸入錯誤"
-            return redirect(url_for("error", message=text))
+        text = "帳號、或密碼輸入錯誤"
+        return redirect(url_for("error", message=text))
         
 @app.route("/message", methods=["POST"])
 def message():
