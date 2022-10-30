@@ -74,9 +74,8 @@ def verification():
         if not username or not password:
             text = "請輸入帳號、密碼"
             return redirect(url_for("error", message=text))
-        else:
-            text = "帳號、或密碼輸入錯誤"
-            return redirect(url_for("error", message=text))
+        text = "帳號、或密碼輸入錯誤"
+        return redirect(url_for("error", message=text))
         
 @app.route("/message", methods=["POST"])
 def message():
