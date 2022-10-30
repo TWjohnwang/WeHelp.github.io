@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # 建立資料庫連線，並設定 connection pool 上限
 connection = mysql.connector.connect(user='root',
-                                    password='',
+                                    password='zxc6325551',
                                     host='localhost',
                                     port='3306',
                                     database="website",
@@ -88,9 +88,8 @@ def verification():
         if not username or not password:
             text = "請輸入帳號、密碼"
             return redirect(url_for("error", message=text))
-        else:
-            text = "帳號、或密碼輸入錯誤"
-            return redirect(url_for("error", message=text))
+        text = "帳號、或密碼輸入錯誤"
+        return redirect(url_for("error", message=text))
         
 @app.route("/message", methods=["POST"])
 def message():
