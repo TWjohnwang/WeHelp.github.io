@@ -61,7 +61,7 @@ def signup():
             return redirect("/")
         else:
             text = "帳號已經被註冊"
-            connection.close()
+            signup_connection.close()
             return redirect(url_for("error", message=text))
 
 @app.route("/signin", methods=["POST"])
