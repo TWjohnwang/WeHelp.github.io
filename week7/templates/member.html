@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0px;
+      }
+      .title {
+        background-color: rgb(34, 51, 68);
+        color: white;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+      }
+      .username {
+        font-size: 35px;
+        margin-top: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .search,
+      .update {
+        margin: 2% auto;
+        width: 40vw;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+      }
+      .search_title,
+      .update_title {
+        margin: 10px 0 10px 0;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+      }
+      .search_message,
+      .update_message {
+        text-align: center;
+        font-size: 30px;
+      }
+      .search_input,
+      .update_input {
+        margin: 10px 0 20px 0;
+        display: flex;
+        justify-content: center;
+      }
+      .search_input input,
+      .update_input input {
+        font-size: 30px;
+        height: 34px;
+        width: 400px;
+      }
+      .btn {
+        font-size: 20px;
+        padding: 5px 15px 5px 15px;
+        margin: auto;
+        display: flex;
+      }
+    </style>
+    <title>會員頁面</title>
+  </head>
+  <body>
+    <script>
+      async function search() {
+        let username = document.querySelector(".search_input input").value;
+        const url = "http://127.0.0.1:3000/api/member?username=" + username;
+        try {
+          const response = await fetch(url);
+          const res = await response.json();
+          let result = document.querySelector(".search_message");
+          result.textContent = res.data.name + " (" + res.data.username + ")";
+        } catch {
+          let result = document.querySelector(".search_message");
+          result.textContent = "沒有此用戶";
+        }
+      }
+      async function update() {
+        let username = document.querySelector(".update_input input").value;
+        const url = "http://127.0.0.1:3000/api/member?username=" + username;
+        try {
+          const response = await fetch(url, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: username,
+            }),
+          });
+          let result = document.querySelector(".update_message");
+          result.textContent = "更新成功";
+          let updateUsername = document.querySelector(".username");
+          updateUsername.textContent = username + "，歡迎登入系統";
+        } catch {
+          let result = document.querySelector(".update_message");
+          result.textContent = "更新失敗";
+        }
+      }
+    </script>
+    <header class="title">
+      <h1>歡迎光臨，這是會員頁</h1>
+    </header>
+    <div class="username">{{text}}，歡迎登入系統</div>
+    <a class="username" href="/signout">登出系統</a>
+    <hr />
+    <div class="search">
+      <div class="search_title">查詢會員姓名</div>
+      <div class="search_input">
+        <input type="text" />
+        <button
+          class="btn"
+          style="margin-left: 10px"
+          type="submit"
+          onclick="search()"
+        >
+          查詢
+        </button>
+      </div>
+      <label class="search_message"></label>
+    </div>
+    <div class="update">
+      <div class="update_title">更新我的姓名</div>
+      <div class="update_input">
+        <input type="text" />
+        <button
+          class="btn"
+          style="margin-left: 10px"
+          type="submit"
+          onclick="update()"
+        >
+          更新
+        </button>
+      </div>
+      <label class="update_message"></label>
+    </div>
+  </body>
+</html>
