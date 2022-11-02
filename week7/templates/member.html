@@ -68,7 +68,7 @@
     <script>
       async function search() {
         let username = document.querySelector(".search_input input").value;
-        const url = "http://127.0.0.1:3000/api/member?username=" + username;
+        const url = `/api/member?username=${username}`;
         try {
           const response = await fetch(url);
           const res = await response.json();
@@ -81,22 +81,28 @@
       }
       async function update() {
         let username = document.querySelector(".update_input input").value;
-        const url = "http://127.0.0.1:3000/api/member?username=" + username;
-        try {
-          const response = await fetch(url, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: username,
-            }),
-          });
+        const url = `/api/member?username=${username}`;
+        let check = new RegExp(/\s/g); // 檢查是否包含空格
+        if (!check.test(username) && username !== "") {
+          try {
+            const response = await fetch(url, {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: username,
+              }),
+            });
+            let result = document.querySelector(".update_message");
+            result.textContent = "更新成功";
+            let updateUsername = document.querySelector(".username");
+            updateUsername.textContent = username + "，歡迎登入系統";
+          } catch {
+            let result = document.querySelector(".update_message");
+            result.textContent = "更新失敗";
+          }
+        } else {
           let result = document.querySelector(".update_message");
-          result.textContent = "更新成功";
-          let updateUsername = document.querySelector(".username");
-          updateUsername.textContent = username + "，歡迎登入系統";
-        } catch {
-          let result = document.querySelector(".update_message");
-          result.textContent = "更新失敗";
+          result.textContent = "包含不合格字元";
         }
       }
     </script>
