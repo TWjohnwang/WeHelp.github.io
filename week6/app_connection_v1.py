@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # 建立資料庫連線，並設定 connection pool 上限
 connection = mysql.connector.connect(user='root',
-                                    password='zxc6325551',
+                                    password='',
                                     host='localhost',
                                     port='3306',
                                     database="website",
