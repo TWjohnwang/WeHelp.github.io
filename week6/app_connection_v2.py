@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, url_for, render_template, session
 from mysql.connector.pooling import MySQLConnectionPool
 
 connection = MySQLConnectionPool(user='root',
-                    password='zxc6325551',
+                    password='',
                     host='localhost',
                     port='3306',
                     database="website",
